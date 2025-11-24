@@ -74,10 +74,10 @@ BOOL CPckClassIndex::ReadPckFileIndexes()
 				return FALSE;
 			}
 			
-			DWORD dwFileBytesRead = MAX_INDEXTABLE_CLEARTEXT_LENGTH/*dwFileIndexTableClearDataLength*/;
+			ulong_t ulFileBytesRead = MAX_INDEXTABLE_CLEARTEXT_LENGTH/*dwFileIndexTableClearDataLength*/;
 			BYTE pckFileIndexBuf[MAX_INDEXTABLE_CLEARTEXT_LENGTH];
 
-			m_zlib.decompress(pckFileIndexBuf, &dwFileBytesRead,
+			m_zlib.decompress(pckFileIndexBuf, &ulFileBytesRead,
 				lpFileBuffer, dwFileIndexTableCryptedDataLength[0]);
 
 #if PCK_V2031_ENABLE
@@ -87,7 +87,6 @@ BOOL CPckClassIndex::ReadPckFileIndexes()
 			*/
 			PCKFILEINDEX_V2031* testnewindex = (PCKFILEINDEX_V2031*)pckFileIndexBuf;
 #endif
-
 			m_PckAllInfo.lpDetectedPckVerFunc->PickIndexData(&lpPckIndexTable->cFileIndex, pckFileIndexBuf);
 
 			lpFileBuffer += dwFileIndexTableCryptedDataLength[0];

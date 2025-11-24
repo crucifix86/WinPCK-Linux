@@ -101,7 +101,7 @@ void CPckControlCenter::Close()
 
 #pragma endregion
 
-#pragma region 重命名节点
+#pragma region Rebuild
 
 BOOL CPckControlCenter::RenameEntry(LPENTRY lpFileEntry, LPCWSTR lpszReplaceString)
 {

@@ -12,7 +12,8 @@
 #define NO_GZCOMPRESS
 #define ZEXTERN
 
-#define ASMINF
+// Disabled ASMINF for Linux - we need the C implementation
+// #define ASMINF
 
 /*
  * If you *really* need a unique prefix for all types and library functions,

@@ -67,3 +67,19 @@ pck.ini
 /Release/pck.ini
 /Release_static/pck.ini
 /Debug/pck.ini
+
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+.vs/
+.vscode/
+*.nupkg
+*.snupkg
+
+# Avalonia GUI logs
+avalonia_gui/bin/
+avalonia_gui/obj/
+*.log

@@ -41,7 +41,8 @@ BOOL CPckClass::GetSingleFileData(LPVOID lpvoidFileRead, const PCKINDEXTABLE* co
 
 	if(m_zlib.check_zlib_header(lpMapAddress)) {
 
-		if(Z_OK != m_zlib.decompress_part((BYTE*)buffer, &dwFileLengthToWrite,
+		ulong_t ulFileLengthToWrite = dwFileLengthToWrite;
+		if(Z_OK != m_zlib.decompress_part((BYTE*)buffer, &ulFileLengthToWrite,
 			lpMapAddress, lpPckFileIndex->dwFileCipherTextSize, lpPckFileIndex->dwFileClearTextSize)) {
 			if(lpPckFileIndex->dwFileClearTextSize == lpPckFileIndex->dwFileCipherTextSize)
 				memcpy(buffer, lpMapAddress, dwFileLengthToWrite);
@@ -271,8 +272,9 @@ BOOL CPckClass::DecompressFile(LPCWSTR	lpszFilename, const PCKINDEXTABLE* lpPckF
 	}
 
 	//If the file size is 0, return directly after creating the file.
-	if(0 == dwFileLengthToWrite)
+	if(0 == dwFileLengthToWrite) {
 		return TRUE;
+	}
 
 	if(!cFileWrite.Mapping(dwFileLengthToWrite)) {
 		Logger_el(TEXT_CREATEMAP_FAIL);

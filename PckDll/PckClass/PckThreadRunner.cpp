@@ -17,7 +17,7 @@ CPckThreadRunner::CPckThreadRunner(LPTHREAD_PARAMS threadparams) :
 
 CPckThreadRunner::~CPckThreadRunner()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 void CPckThreadRunner::start()
@@ -127,13 +127,13 @@ void CPckThreadRunner::WriteThread(LPTHREAD_PARAMS threadparams)
 			free(dataToWrite);
 
 		uint32_t nQueueLen = m_QueueContent.size();
-		Logger.logOutput(__FUNCTION__ "_free", "m_QueueContent.size() = %d\r\n", nQueueLen);
+		Logger.logOutput(__FUNCTION__, "_free", "m_QueueContent.size() = %d\r\n", nQueueLen);
 
 		for (uint32_t i = 0; i < nQueueLen; i++) {
 
 			PCKINDEXTABLE *lpPckIndex = &m_QueueContent[i];
-			if (MALLOCED_EMPTY_DATA != (int)lpPckIndex->compressed_file_data) {
-				Logger.logOutput(__FUNCTION__ "_free", "free buffer(0x%08x)\r\n", (int)lpPckIndex->compressed_file_data);
+			if (MALLOCED_EMPTY_DATA != (intptr_t)lpPckIndex->compressed_file_data) {
+				Logger.logOutput(__FUNCTION__, "_free", "free buffer(0x%08x)\r\n", (intptr_t)lpPckIndex->compressed_file_data);
 				free(lpPckIndex->compressed_file_data);
 			}
 		}

@@ -50,7 +50,7 @@ BOOL CPckThreadRunner::getCompressedDataQueue(LPBYTE &lpBuffer, PCKINDEXTABLE_CO
 	while (m_QueueContent.empty()) {
 
 		if (!m_lpPckClassBase->CheckIfNeedForcedStopWorking()) {
-			Logger.logOutput(__FUNCTION__ "_Sleep", "SleepConditionVariableSRW\r\n");
+			Logger.logOutput(__FUNCTION__, "_Sleep", "SleepConditionVariableSRW\r\n");
 
 			//std::unique_lock<std::mutex> lckQueue(m_LockQueue);
 			m_cvReadyToPut.wait(lckQueue);
@@ -58,14 +58,14 @@ BOOL CPckThreadRunner::getCompressedDataQueue(LPBYTE &lpBuffer, PCKINDEXTABLE_CO
 		else {
 			//m_LockQueue.unlock();
 
-			Logger.logOutput(__FUNCTION__ "_Sleep", "user cancled\r\n");
+			Logger.logOutput(__FUNCTION__, "_Sleep", "user cancled\r\n");
 			lpBuffer = NULL;
 			m_Index_Compress.push_back(PCKINDEXTABLE_COMPRESS{ 0 });
 			return FALSE;
 		}
 	}
 
-	Logger.logOutput(__FUNCTION__ "_Sleep", "Awake\r\n");
+	Logger.logOutput(__FUNCTION__, "_Sleep", "Awake\r\n");
 
 	PCKINDEXTABLE cPckFileIndexToCompress = m_QueueContent.front();
 	m_QueueContent.pop_front();
@@ -83,7 +83,7 @@ BOOL CPckThreadRunner::getCompressedDataQueue(LPBYTE &lpBuffer, PCKINDEXTABLE_CO
 	m_lpPckClassBase->FillAndCompressIndexData(&lpPckIndexTable, &cPckFileIndexToCompress.cFileIndex);
 	m_Index_Compress.push_back(lpPckIndexTable);
 
-	Logger.logOutput(__FUNCTION__ "_m_Index_Compress", "m_Index_Compress:%d\r\n", m_Index_Compress.size());
+	Logger.logOutput(__FUNCTION__, "_m_Index_Compress", "m_Index_Compress:%d\r\n", m_Index_Compress.size());
 
 	lpBuffer = cPckFileIndexToCompress.compressed_file_data;
 

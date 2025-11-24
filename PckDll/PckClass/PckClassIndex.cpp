@@ -10,7 +10,7 @@ CPckClassIndex::~CPckClassIndex()
 {
 	if(NULL != m_PckAllInfo.lpPckIndexTable)
 		free(m_PckAllInfo.lpPckIndexTable);
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 void* CPckClassIndex::AllocMemory(size_t	sizeStuct)
@@ -40,10 +40,14 @@ void CPckClassIndex::GenerateUnicodeStringToIndex()
 	for(DWORD i = 0;i < m_PckAllInfo.dwFileCount;++i) {
 		//File name length
 		lpPckIndexTable->nFilelenBytes = strlen(lpPckIndexTable->cFileIndex.szFilename);
+		if(i == 0) {
+		}
 		//The remaining space in the file name does not occupy the last \0
 		lpPckIndexTable->nFilelenLeftBytes = MAX_PATH_PCK_256 - lpPckIndexTable->nFilelenBytes - 1;
 		//pck ansi -> unicode
 		CPckClassCodepage::PckFilenameCode2UCS(lpPckIndexTable->cFileIndex.szFilename, lpPckIndexTable->cFileIndex.szwFilename, sizeof(lpPckIndexTable->cFileIndex.szwFilename) / sizeof(wchar_t));
+		if(i == 0) {
+		}
 		++lpPckIndexTable;
 	}
 

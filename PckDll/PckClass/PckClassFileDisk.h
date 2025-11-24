@@ -1,6 +1,9 @@
 #pragma once
 
-typedef unsigned __int64	QWORD;
+#include <stdint.h>
+#ifndef QWORD
+typedef uint64_t QWORD;
+#endif
 #include <string>
 #include "PckStructs.h"
 #include "PckClassLog.h"

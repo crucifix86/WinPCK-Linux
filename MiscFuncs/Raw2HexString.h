@@ -1,7 +1,10 @@
 #pragma once
 #include <stdint.h>
+#include "platform_defs.h"
 
+#ifndef BOOL
 typedef int                 BOOL;
+#endif
 
 #ifndef TRUE
 #define TRUE 1

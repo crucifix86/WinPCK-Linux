@@ -20,7 +20,7 @@ CZupClass::~CZupClass()
 {
 	if(NULL != m_lpZupIndexTable)
 		free(m_lpZupIndexTable);
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 CONST	LPPCKINDEXTABLE CZupClass::GetPckIndexTable()

@@ -1,7 +1,13 @@
 #include "TextLineSpliter.h"
 #include <assert.h>
+#include <cstdint>
 
 //#include "CharsCodeConv.h"
+
+// GCC predefines 'unix' as 1, which breaks the enum
+#ifdef unix
+#undef unix
+#endif
 
 #define MAX_LINE_LENGTH (MAX_PATH + 10)
 
@@ -138,5 +144,3 @@ void CTextUnits<T, R, RI>::SplitLine(const T _src, std::vector<T>&splitedLine, i
 	Split(_src, splitedLine, eolChars, flag);
 }
 
-template class CTextUnits<std::string, std::regex, std::sregex_token_iterator>;
-template class CTextUnits<std::wstring, std::wregex, std::wsregex_token_iterator>;

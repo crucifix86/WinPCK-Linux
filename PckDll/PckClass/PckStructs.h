@@ -9,7 +9,20 @@
 // 2015.5.13
 //////////////////////////////////////////////////////////////////////
 
+#ifdef _WIN32
 #include <windows.h>
+#else
+// Linux compatibility types
+#include <stdint.h>
+#include <wchar.h>
+#ifndef DWORD
+typedef uint32_t DWORD;
+#endif
+#ifndef QWORD
+typedef uint64_t QWORD;
+#endif
+#endif
+
 #include "PckDefines.h"
 #include <vector>
 

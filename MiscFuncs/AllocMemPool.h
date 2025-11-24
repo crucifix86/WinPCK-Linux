@@ -6,6 +6,7 @@ https://blog.csdn.net/dustpg/article/details/38756241
 */
 #pragma warning ( disable : 4200 )
 #include <stdint.h>
+#include "platform_defs.h"
 
 class CAllocMemPool
 {

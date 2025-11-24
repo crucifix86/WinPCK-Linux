@@ -12,6 +12,7 @@
 #include "DictHash.h"
 #include <string.h>
 #include <stdlib.h>
+#include "platform_defs.h"
 
 #if PCK_DEBUG_OUTPUT
 #include <windows.h>
@@ -21,9 +22,12 @@
 #pragma warning ( disable : 4996 )
 #pragma warning ( disable : 4267 )
 
+// Forward declarations
+unsigned int JSHash(const char *str);
+void zupbase64cpy(char *_dst, const char *_src, int len);
 
 // JS Hash Function
-unsigned int _fastcall JSHash(const char *str)
+unsigned int JSHash(const char *str)
 {
 	unsigned int hash = 1315423911;
 
@@ -35,7 +39,7 @@ unsigned int _fastcall JSHash(const char *str)
 
 }
 
-void _fastcall zupbase64cpy(char *_dst, const char *_src, int len)
+void zupbase64cpy(char *_dst, const char *_src, int len)
 {
 
 	for(; len > 0; len--) {

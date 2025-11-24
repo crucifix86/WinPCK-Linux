@@ -13,8 +13,14 @@
 #if !defined(_PCKHEADER_H_)
 #define _PCKHEADER_H_
 
-#ifndef UNICODE
-#error("please use Unicode charset") 
+// Only enforce UNICODE on Windows
+#if defined(_WIN32) && !defined(UNICODE)
+#error("please use Unicode charset")
+#endif
+
+// On Linux, we always use Unicode (wchar_t)
+#ifndef _WIN32
+#define UNICODE
 #endif
 
 #include "PckStructs.h"

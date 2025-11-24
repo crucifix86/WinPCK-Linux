@@ -12,7 +12,9 @@
 //#include "imagehlp.h"
 //#pragma comment(lib,"imagehlp.lib")
 
+#ifdef _WIN32
 #include <windows.h>
+#endif
 #include "PckClassFileDisk.h"
 
 
@@ -30,7 +32,7 @@ CPckClassFileDisk::CPckClassFileDisk()
 
 CPckClassFileDisk::~CPckClassFileDisk()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 #pragma region Copy
@@ -249,7 +251,9 @@ BOOL CPckClassFileDisk::EnumAllFilesByPathList(const vector<wstring> &lpszFilePa
 }
 
 
+#ifdef _WIN32
 #include <shlwapi.h>
+#endif
 #pragma comment(lib, "shlwapi.lib")
 
 BOOL CPckClassFileDisk::MakeFolderExistInternal(const wchar_t* lpszDirectory)

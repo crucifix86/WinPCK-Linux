@@ -74,6 +74,7 @@ private:
 
 extern CPckClassLog& Logger;
 
-#define LoggerExInternal2(msg, file, func, line, ...) Logger.e(##msg " at: "##file ", function: " func ", line: "#line, ##__VA_ARGS__)
+// Fixed for GCC - can't use ## for string literal concatenation
+#define LoggerExInternal2(msg, file, func, line, ...) Logger.e(msg " at: " file ", function: %s, line: %d", ##__VA_ARGS__, func, line)
 #define LoggerExInternal(msg, file, func, line, ...) LoggerExInternal2(msg, file, func, line, ##__VA_ARGS__)
 #define Logger_el(msg, ...) LoggerExInternal(msg, __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__)

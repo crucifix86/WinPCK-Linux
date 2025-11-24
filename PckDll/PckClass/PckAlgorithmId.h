@@ -1,26 +1,28 @@
 #pragma once
 
 /*
-	PCK version judgment, the code comes from BeySoft¡¯s PckLib
+	PCK version judgment, the code comes from BeySoftï¿½ï¿½s PckLib
 */
 #pragma warning ( disable : 4309 )
+
+#include <stdint.h>
 
 class CPckAlgorithmId
 {
 public:
-	CPckAlgorithmId(unsigned __int32 id, unsigned __int32 CustomPckGuardByte0 = 0, unsigned __int32 CustomPckGuardByte1 = 0, unsigned __int32 CustomPckMaskDword = 0, unsigned __int32 CustomPckCheckMask = 0);
+	CPckAlgorithmId(uint32_t id, uint32_t CustomPckGuardByte0 = 0, uint32_t CustomPckGuardByte1 = 0, uint32_t CustomPckMaskDword = 0, uint32_t CustomPckCheckMask = 0);
 	~CPckAlgorithmId();
 
-	unsigned __int32 GetPckGuardByte0() { return PckGuardByte0; }
-	unsigned __int32 GetPckGuardByte1() { return PckGuardByte1; }
-	unsigned __int32 GetPckMaskDword() { return PckMaskDword; }
-	unsigned __int32 GetPckCheckMask() { return PckCheckMask; }
+	uint32_t GetPckGuardByte0() { return PckGuardByte0; }
+	uint32_t GetPckGuardByte1() { return PckGuardByte1; }
+	uint32_t GetPckMaskDword() { return PckMaskDword; }
+	uint32_t GetPckCheckMask() { return PckCheckMask; }
 
 private:
-	unsigned __int32  PckGuardByte0, PckGuardByte1, PckMaskDword, PckCheckMask;
+	uint32_t  PckGuardByte0, PckGuardByte1, PckMaskDword, PckCheckMask;
 
-	//void SetAlgorithmId(unsigned __int32 id);
-	void SetAlgorithmId(unsigned __int32 id, unsigned __int32 CustomPckGuardByte0 = 0, unsigned __int32 CustomPckGuardByte1 = 0, unsigned __int32 CustomPckMaskDword = 0, unsigned __int32 CustomPckCheckMask = 0);
+	//void SetAlgorithmId(uint32_t id);
+	void SetAlgorithmId(uint32_t id, uint32_t CustomPckGuardByte0 = 0, uint32_t CustomPckGuardByte1 = 0, uint32_t CustomPckMaskDword = 0, uint32_t CustomPckCheckMask = 0);
 
 };
 

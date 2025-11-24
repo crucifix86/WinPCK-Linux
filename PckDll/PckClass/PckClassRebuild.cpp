@@ -14,7 +14,7 @@ CPckClassWriteOperator::CPckClassWriteOperator()
 
 CPckClassWriteOperator::~CPckClassWriteOperator()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 /********************************

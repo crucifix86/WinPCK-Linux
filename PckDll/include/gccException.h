@@ -21,7 +21,7 @@ private:
 };
 #endif
 
-#define __ExceptionWithLine(msg, file, func, line) MyException(##msg " at: "##file ", function: " func ", line: "#line)
+#define __ExceptionWithLine(msg, file, func, line) MyException(std::string(msg) + " at: " + file + ", function: " + func + ", line: " + std::to_string(line))
 #define _ExceptionWithLine(msg, file, func, line) __ExceptionWithLine(msg, file, func, line)
 #define MyExceptionEx(msg) _ExceptionWithLine(msg, __FILE__, __FUNCTION__, __LINE__)
 

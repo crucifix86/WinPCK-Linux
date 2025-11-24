@@ -1,6 +1,8 @@
 #ifndef _COMPILER_H_
 #define _COMPILER_H_
 
+#include "platform_defs.h"
+
 #ifdef __GNUC__
 #  include "compiler_gcc.h"
 #elif defined(_MSC_VER)

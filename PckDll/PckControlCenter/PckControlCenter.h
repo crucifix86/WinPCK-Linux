@@ -129,7 +129,7 @@ public:
 	LPCENTRY			GetFileEntryByPath(LPCWSTR _in_szCurrentNodePathString);
 #pragma endregion
 
-#pragma region pckÎÄ¼şÊôĞÔ
+#pragma region pck_operations
 
 	BOOL				IsValidPck();
 

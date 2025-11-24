@@ -1,12 +1,21 @@
 #pragma once
 
+#include "platform_defs.h"
+
+#ifdef _WIN32
 #include <Windows.h>
+#endif
+
 #include <stdint.h>
 #include "gccException.h"
 
 typedef unsigned long       ulong_t;
+#ifndef BOOL
 typedef int                 BOOL;
+#endif
 typedef unsigned char       BYTE;
+typedef BYTE*               LPBYTE;
+typedef const BYTE*         LPCBYTE;
 
 typedef const wchar_t * 	LPCWSTR;
 typedef wchar_t *			LPWSTR;
@@ -14,10 +23,14 @@ typedef const char * 		LPCSTR;
 typedef char *				LPSTR;
 
 /* Define ssize_t */
-#ifdef _WIN64
-typedef long long ssize_t;
+#ifdef _WIN32
+    #ifdef _WIN64
+    typedef long long ssize_t;
+    #else
+    typedef int ssize_t;
+    #endif
 #else
-typedef int ssize_t;
+    #include <sys/types.h>
 #endif
 
 #ifndef TRUE

@@ -11,7 +11,24 @@
 
 #include "CharsCodeConv.h"
 #include <stdint.h>
+#ifdef _WIN32
 #include <Windows.h>
+#else
+#include <iconv.h>
+#include <cstring>
+#include <errno.h>
+#include "platform_defs.h"
+#define CP_UTF8 65001
+#ifndef BOOL
+#define BOOL int
+#endif
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+#endif
 
 //class chs_codecvt : public std::codecvt_byname<wchar_t, char, std::mbstate_t> {
 //public:
@@ -39,6 +56,7 @@
 //	return converter.to_bytes(src);
 //}
 
+#ifdef _WIN32
 int AtoW(const char *src, wchar_t *dst, int bufsize, int max_len, int cp)
 {
 	//The returned value is the converted string using the value of strlen or wcslen + 1
@@ -58,6 +76,47 @@ int WtoU8(const wchar_t *src, char *dst, int bufsize, int max_len)
 {
 	return	::WideCharToMultiByte(CP_UTF8, 0, src, max_len, dst, bufsize, nullptr, 0);
 }
+#else
+// POSIX implementations using mbstowcs/wcstombs
+int AtoW(const char *src, wchar_t *dst, int bufsize, int max_len, int cp)
+{
+	if (!src) return 0;
+	if (!dst) {
+		// Just calculate required size
+		return mbstowcs(nullptr, src, 0) + 1;
+	}
+	size_t result = mbstowcs(dst, src, bufsize);
+	if (result == (size_t)-1) return 0;
+	return result + 1;  // +1 to include null terminator
+}
+
+int WtoA(const wchar_t *src, char *dst, int bufsize, int max_len, int cp)
+{
+	if (!src) return 0;
+	if (!dst) {
+		// Just calculate required size
+		return wcstombs(nullptr, src, 0) + 1;
+	}
+	size_t result = wcstombs(dst, src, bufsize);
+	if (result == (size_t)-1) {
+		if (bufsize > 0) dst[0] = '_';  // Fallback character
+		return 1;
+	}
+	return result + 1;  // +1 to include null terminator
+}
+
+int U8toW(const char *src, wchar_t *dst, int bufsize, int max_len)
+{
+	// On Linux, assume UTF-8 locale is set, so mbstowcs handles UTF-8
+	return AtoW(src, dst, bufsize, max_len, CP_UTF8);
+}
+
+int WtoU8(const wchar_t *src, char *dst, int bufsize, int max_len)
+{
+	// On Linux, assume UTF-8 locale is set, so wcstombs outputs UTF-8
+	return WtoA(src, dst, bufsize, max_len, CP_UTF8);
+}
+#endif
 
 #define DATATYPE_UTF8_DETECT_RTN {if(0 == *s) return TEXT_TYPE_RAW;else	{isNotUTF8 = TRUE; break;}}	
 

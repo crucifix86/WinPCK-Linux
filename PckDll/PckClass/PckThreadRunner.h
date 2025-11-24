@@ -7,6 +7,7 @@
 #include <functional>
 #include <deque>
 #include <mutex>
+#include <condition_variable>
 
 
 //Get file method

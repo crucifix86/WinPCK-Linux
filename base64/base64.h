@@ -11,18 +11,25 @@ extern "C" {
 //#define BASE64_DLLIMP
 #define BASE64_STATIC
 
-#ifdef BASE64_DLLEXP
-#	define BEXTERN extern __declspec(dllexport)
-#	define BEXPORTVA __cdecl
-#	define BEXPORT __stdcall
-#elif defined BASE64_STATIC
-#	define BEXTERN 
-#	define BEXPORTVA __cdecl
-#	define BEXPORT __stdcall
+#ifdef _WIN32
+    #ifdef BASE64_DLLEXP
+    #	define BEXTERN extern __declspec(dllexport)
+    #	define BEXPORTVA __cdecl
+    #	define BEXPORT __stdcall
+    #elif defined BASE64_STATIC
+    #	define BEXTERN
+    #	define BEXPORTVA __cdecl
+    #	define BEXPORT __stdcall
+    #else
+    #	define BEXTERN extern __declspec(dllimport)
+    #	define BEXPORTVA __cdecl
+    #	define BEXPORT __stdcall
+    #endif
 #else
-#	define BEXTERN extern __declspec(dllimport)
-#	define BEXPORTVA __cdecl
-#	define BEXPORT __stdcall
+    // Non-Windows platforms
+    #define BEXTERN
+    #define BEXPORTVA
+    #define BEXPORT
 #endif
 
 #define BASE64_ZUP 0

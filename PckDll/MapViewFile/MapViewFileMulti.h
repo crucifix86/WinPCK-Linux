@@ -1,5 +1,10 @@
 #pragma once
+
+#ifdef _WIN32
 #include "MapViewFile.h"
+#else
+#include "MapViewFile_posix.h"
+#endif
 
 #include <vector>
 

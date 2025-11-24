@@ -6,7 +6,7 @@ _inline void strpathcpy(T * dst, T * &src)
 	while((*dst++ = *src) && '\\' != *++src && '/' != *src)
 		;
 }
-#pragma region Ààº¯Êý
+#pragma region Functions
 
 CPckClassNode::CPckClassNode()
 {
@@ -15,7 +15,7 @@ CPckClassNode::CPckClassNode()
 
 CPckClassNode::~CPckClassNode()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 #pragma endregion
@@ -32,10 +32,12 @@ void CPckClassNode::ParseIndexTableToNode(LPPCKINDEXTABLE lpMainIndexTable)
 		AddFileToNode(lpPckIndexTable);
 		++lpPckIndexTable;
 	}
-	
+
 	//Add a label to the entryType under the first root node to show the difference.
-	if(NULL != m_PckAllInfo.cRootNode.child)
+	if(NULL != m_PckAllInfo.cRootNode.child) {
 		m_PckAllInfo.cRootNode.child->entryType |= PCK_ENTRY_TYPE_ROOT;
+	} else {
+	}
 }
 
 /********************************
@@ -378,7 +380,7 @@ BOOL CPckClassNode::FindDuplicateNodeFromFileList(const PCK_PATH_NODE* lpNodeToI
 		FILES_TO_COMPRESS *lpfirstFile = &(*lpFilesList)[i];
 		const PCK_PATH_NODE* lpDuplicateNode = FindFileNode(lpNodeToInsertPtr, lpfirstFile->szwFilename + lpfirstFile->nFileTitleLen);
 
-		if(INVALID_NODE == (int)lpDuplicateNode) {
+		if(INVALID_NODE == (intptr_t)lpDuplicateNode) {
 			Logger.w(TEXT_ERROR_DUP_FOLDER_FILE);
 			assert(FALSE);
 			return FALSE;

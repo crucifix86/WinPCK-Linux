@@ -16,7 +16,7 @@ CPckClassZlib::CPckClassZlib()
 
 CPckClassZlib::~CPckClassZlib()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 /*
@@ -125,9 +125,12 @@ int CPckClassZlib::decompress(void *dest, ulong_t  *destLen, const void *source,
 {
 	assert(0 != *destLen);
 	int rtnd = uncompress((Bytef*)dest, destLen, (Bytef*)source, sourceLen);
+	if(rtnd != Z_OK) {
+		Logger.e("zlib decompress failed: rtnd=%d sourceLen=%u destLen=%lu", rtnd, sourceLen, *destLen);
+	}
 	assert(0 != *destLen);
 	//return (0 != *destLen);
-	assert(rtnd == Z_OK);
+	//assert(rtnd == Z_OK);
 	return (rtnd == Z_OK);
 }
 

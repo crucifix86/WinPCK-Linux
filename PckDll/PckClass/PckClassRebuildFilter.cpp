@@ -22,7 +22,7 @@ CPckClassRebuildFilter::CPckClassRebuildFilter()
 CPckClassRebuildFilter::~CPckClassRebuildFilter()
 {
 	ResetRebuildFilterInIndexList();
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 #pragma region Read file and convert to Unicode
@@ -251,7 +251,7 @@ BOOL CPckClassRebuildFilter::ParseScript(const wchar_t * lpszScriptFile)
 		return FALSE; 
 	}
 
-	m_FirstFileOp.push_back(FILEOP{ 0 });
+	m_FirstFileOp.push_back(FILEOP{ OP_CheckFile });
 	FILEOP * pFileOp = &m_FirstFileOp.back();
 
 	for (int i = 0; i < m_ScriptLines.size(); i++) {
@@ -261,7 +261,7 @@ BOOL CPckClassRebuildFilter::ParseScript(const wchar_t * lpszScriptFile)
 			//A one-line script is divided into two parts, the operation and the file name
 			if (ParseOneLine(pFileOp, m_ScriptLines[i].c_str())) {
 
-				m_FirstFileOp.push_back(FILEOP{ 0 });
+				m_FirstFileOp.push_back(FILEOP{ OP_CheckFile });
 				pFileOp = &m_FirstFileOp.back();
 
 			}

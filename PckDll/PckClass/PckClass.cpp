@@ -24,7 +24,7 @@ CPckClass::CPckClass(LPPCK_RUNTIME_PARAMS inout)
 
 CPckClass::~CPckClass()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 BOOL CPckClass::Init(LPCWSTR	szFile)

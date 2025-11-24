@@ -32,11 +32,11 @@
 /*
 Zhuxian v202 version file structure
 		   00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
-00000000h: EF 23 CA 4D 57 01 00 00 B7 89 A0 56 31 37 32 39 ; ?ÊMW...·‰ V1729
-00000010h: 20 30 0D 0A 41 74 93 A8 70 36 A4 F1 78 DA 4B 2F ;  0..At“¨p6¤ñxÚK/
-00000020h: 4A 2C 2E 4E 2D 8E 29 4B 2D 2A CE CC CF D3 2B 2E ; J,.N-?K-*ÎÌÏÓ+.
-00000030h: 67 18 71 80 07 88 39 A0 18 04 00 CB 3F 07 8F EE ; g.q€.??..?.î
-00000040h: FE FD FD 02 00 02 00 76 74 93 A8 00 00 00 00 41 ; þý?...vt“¨....A
+00000000h: EF 23 CA 4D 57 01 00 00 B7 89 A0 56 31 37 32 39 ; ?ï¿½MW...ï¿½ï¿½ï¿½V1729
+00000010h: 20 30 0D 0A 41 74 93 A8 70 36 A4 F1 78 DA 4B 2F ;  0..Atï¿½ï¿½p6ï¿½ï¿½xï¿½K/
+00000020h: 4A 2C 2E 4E 2D 8E 29 4B 2D 2A CE CC CF D3 2B 2E ; J,.N-?K-*ï¿½ï¿½ï¿½ï¿½+.
+00000030h: 67 18 71 80 07 88 39 A0 18 04 00 CB 3F 07 8F EE ; g.qï¿½.??..?.ï¿½ï¿½
+00000040h: FE FD FD 02 00 02 00 76 74 93 A8 00 00 00 00 41 ; ï¿½ï¿½?...vtï¿½ï¿½....A
 00000050h: 6E 67 65 6C 69 63 61 20 46 69 6C 65 20 50 61 63 ; ngelica File Pac
 00000060h: 6B 61 67 65 0D 0A 43 72 65 61 74 65 20 62 79 20 ; kage..Create by
 00000070h: 57 69 6E 50 43 4B 00 00 00 00 00 00 00 00 00 00 ; WinPCK..........
@@ -52,13 +52,13 @@ Zhuxian v202 version file structure
 00000110h: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................
 00000120h: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................
 00000130h: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................
-00000140h: 00 00 00 00 00 00 00 00 00 00 00 EF BE 0D F0 01 ; ...........ï¾.?
+00000140h: 00 00 00 00 00 00 00 00 00 00 00 EF BE 0D F0 01 ; ...........ï¿½.?
 00000150h: 00 00 00 02 00 02 00                            ; .......
 
 Last 280 bytes: 0x3f~0x156
 		   00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
-00000030h: xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx EE ; g.q€.??..?.î
-00000040h: FE FD FD 02 00 02 00 76 74 93 A8 00 00 00 00 41 ; þý?...vt“¨....A
+00000030h: xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx EE ; g.qï¿½.??..?.ï¿½ï¿½
+00000040h: FE FD FD 02 00 02 00 76 74 93 A8 00 00 00 00 41 ; ï¿½ï¿½?...vtï¿½ï¿½....A
 00000050h: 6E 67 65 6C 69 63 61 20 46 69 6C 65 20 50 61 63 ; ngelica File Pac
 00000060h: 6B 61 67 65 0D 0A 43 72 65 61 74 65 20 62 79 20 ; kage..Create by
 00000070h: 57 69 6E 50 43 4B 00 00 00 00 00 00 00 00 00 00 ; WinPCK..........
@@ -74,7 +74,7 @@ Last 280 bytes: 0x3f~0x156
 00000110h: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................
 00000120h: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................
 00000130h: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ; ................
-00000140h: 00 00 00 00 00 00 00 00 00 00 00 EF BE 0D F0 01 ; ...........ï¾.?
+00000140h: 00 00 00 00 00 00 00 00 00 00 00 EF BE 0D F0 01 ; ...........ï¿½.?
 00000150h: 00 00 00 02 00 02 00                            ; .......
 
 0xAAAAAAAA: 0x00~0x03
@@ -83,15 +83,15 @@ Last 280 bytes: 0x3f~0x156
 0xEEEEEEEE: Calculate the starting position of the list (array) address that stores the file name and file data. Starting from the 8th byte starting from the last 280 bytes, find 0xa8937476, perform xor with 0xA8937462, ->0x14, and take out the data:
 
 xxxxxxxxxx 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
-00000010h: xx xx xx xx 41 74 93 A8 70 36 A4 F1 78 DA 4B 2F ;  0..At“¨p6¤ñxÚK/
-00000020h: 4A 2C 2E 4E 2D 8E 29 4B 2D 2A CE CC CF D3 2B 2E ; J,.N-?K-*ÎÌÏÓ+.
+00000010h: xx xx xx xx 41 74 93 A8 70 36 A4 F1 78 DA 4B 2F ;  0..Atï¿½ï¿½p6ï¿½ï¿½xï¿½K/
+00000020h: 4A 2C 2E 4E 2D 8E 29 4B 2D 2A CE CC CF D3 2B 2E ; J,.N-?K-*ï¿½ï¿½ï¿½ï¿½+.
 00000030h: 67 18 71 80 07 88 39 A0 18 04 00 CB 3F 07 8F
 Calculate the values 0x14~0x17 0xA8937441 and 0xGGGGGGGG (0xA8937462) ->0x23=35. This address is the size of the compressed index of this file.
 Calculate the values 0x18~0x1b 0xf1a43670 and 0xHHHHHHHH (0xF1A43653) ->0x23=35. This address is the size of the compressed index of this file.
 
-00000010h: xx xx xx xx xx xx xx xx xx xx xx xx 78 DA 4B 2F ;  0..At“¨p6¤ñxÚK/
-00000020h: 4A 2C 2E 4E 2D 8E 29 4B 2D 2A CE CC CF D3 2B 2E ; J,.N-?K-*ÎÌÏÓ+.
-00000030h: 67 18 71 80 07 88 39 A0 18 04 00 CB 3F 07 8F xx ; g.q€.??..?.î
+00000010h: xx xx xx xx xx xx xx xx xx xx xx xx 78 DA 4B 2F ;  0..Atï¿½ï¿½p6ï¿½ï¿½xï¿½K/
+00000020h: 4A 2C 2E 4E 2D 8E 29 4B 2D 2A CE CC CF D3 2B 2E ; J,.N-?K-*ï¿½ï¿½ï¿½ï¿½+.
+00000030h: 67 18 71 80 07 88 39 A0 18 04 00 CB 3F 07 8F xx ; g.qï¿½.??..?.ï¿½ï¿½
 
 0xFFFFFFFF: 0x14b~0x14e
 
@@ -112,7 +112,7 @@ CPckClassVersionDetect::CPckClassVersionDetect()
 
 CPckClassVersionDetect::~CPckClassVersionDetect()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 PCK_VERSION_ID CPckClassVersionDetect::cPckIDs[] = 
@@ -209,7 +209,7 @@ int CPckClassVersionDetect::FillUnknownVersionInfo(DWORD AlgorithmId, DWORD Vers
 		LPPCK_KEYS lpUnknownPckKeys = &cPckVersionFuncToAdd.cPckXorKeys;
 		LPPCK_VERSION_FUNC lpUnknownPckVersionFunc = &cPckVersionFuncToAdd;
 		lpUnknownPckKeys->id = cPckVersionFunc.size();
-		swprintf_s(lpUnknownPckKeys->name, L"Unknown format recognized(ver=0x%x id=%d)", Version, AlgorithmId);
+		swprintf_s(lpUnknownPckKeys->name, 256, L"Unknown format recognized(ver=0x%x id=%d)", Version, AlgorithmId);
 		lpUnknownPckKeys->CategoryId = AFPCK_VERSION_202 == Version ? PCK_V2020 : PCK_V2030;
 		lpUnknownPckKeys->Version = Version;
 
@@ -236,7 +236,7 @@ int CPckClassVersionDetect::FillUnknownVersionInfoByKeys(DWORD AlgorithmId, DWOR
 		}
 		else 
 		{
-			swprintf_s(lpUnknownPckKeys->name, L"Unknown format recognized(ver=0x%x id=%d)", Version, AlgorithmId);
+			swprintf_s(lpUnknownPckKeys->name, 256, L"Unknown format recognized(ver=0x%x id=%d)", Version, AlgorithmId);
 		}
 		lpUnknownPckKeys->CategoryId = AFPCK_VERSION_202 == Version ? PCK_V2020 : PCK_V2030;
 		lpUnknownPckKeys->Version = Version;

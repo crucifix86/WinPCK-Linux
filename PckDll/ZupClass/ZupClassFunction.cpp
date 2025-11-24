@@ -10,8 +10,12 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "ZupClass.h"
-#include "..\base64\base64.h"
+#include "../../base64/base64.h"
+#ifdef _WIN32
 #include <intrin.h>
+#else
+#include <emmintrin.h>  // SSE2 intrinsics on Linux
+#endif
 #include "CharsCodeConv.h"
 #include "TextLineSpliter.h"
 

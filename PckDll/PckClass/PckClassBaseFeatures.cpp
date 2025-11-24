@@ -1,5 +1,6 @@
 //#include <Windows.h>
 #include "PckClassBaseFeatures.h"
+#include <cstring>
 //#include <tchar.h>
 
 CPckClassBaseFeatures::CPckClassBaseFeatures():
@@ -12,7 +13,7 @@ CPckClassBaseFeatures::CPckClassBaseFeatures():
 
 CPckClassBaseFeatures::~CPckClassBaseFeatures()
 {
-	Logger.OutputVsIde(__FUNCTION__"\r\n");
+	Logger.OutputVsIde(__FUNCTION__, "\r\n");
 }
 
 void CPckClassBaseFeatures::ResetPckInfos()

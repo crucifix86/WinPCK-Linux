@@ -775,14 +775,14 @@ WINPCK_API void		pck_log##_level##A(LPCSTR  _fmt, ...)\
 {\
 	va_list	ap;\
 	va_start(ap, _fmt);\
-	Logger.PrintLog(#@_level, _fmt, ap);\
+	Logger.PrintLog(#_level[0], _fmt, ap);\
 	va_end(ap);\
 }\
 WINPCK_API void		pck_log##_level##W(LPCWSTR  _fmt, ...)\
 {\
 	va_list	ap;\
 	va_start(ap, _fmt);\
-	Logger.PrintLog(#@_level, _fmt, ap);\
+	Logger.PrintLog(#_level[0], _fmt, ap);\
 	va_end(ap);\
 }
 

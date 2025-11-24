@@ -4,7 +4,7 @@
 #include "PckClassLog.h"
 #endif
 
-CPckAlgorithmId::CPckAlgorithmId(unsigned __int32 id, unsigned __int32 CustomPckGuardByte0, unsigned __int32 CustomPckGuardByte1, unsigned __int32 CustomPckMaskDword, unsigned __int32 CustomPckCheckMask)
+CPckAlgorithmId::CPckAlgorithmId(uint32_t id, uint32_t CustomPckGuardByte0, uint32_t CustomPckGuardByte1, uint32_t CustomPckMaskDword, uint32_t CustomPckCheckMask)
 {
 	SetAlgorithmId(id, CustomPckGuardByte0, CustomPckGuardByte1, CustomPckMaskDword, CustomPckCheckMask);
 }
@@ -13,7 +13,7 @@ CPckAlgorithmId::CPckAlgorithmId(unsigned __int32 id, unsigned __int32 CustomPck
 CPckAlgorithmId::~CPckAlgorithmId()
 {}
 
-void CPckAlgorithmId::SetAlgorithmId(unsigned __int32 id, unsigned __int32 CustomPckGuardByte0, unsigned __int32 CustomPckGuardByte1, unsigned __int32 CustomPckMaskDword, unsigned __int32 CustomPckCheckMask)
+void CPckAlgorithmId::SetAlgorithmId(uint32_t id, uint32_t CustomPckGuardByte0, uint32_t CustomPckGuardByte1, uint32_t CustomPckMaskDword, uint32_t CustomPckCheckMask)
 {
 	//0 Jade Dynasty, Perfect World
 	//111 Hot Dance Party

@@ -73,10 +73,10 @@ void CPckControlCenter::DefaultShowFilelistCallback(void* _in_param, int sn, LPC
 		}
 	};
 
-	auto fix_print_qword = [](int nTabs, unsigned __int64 num) {
+	auto fix_print_qword = [](int nTabs, uint64_t num) {
 
 		wchar_t szQword2Str[32];
-		swprintf_s(szQword2Str, L"%llu", num);
+		swprintf_s(szQword2Str, 32, L"%llu", num);
 
 		int len = wcslen(szQword2Str);
 		int nSubTabs = (len-1) / 8;
@@ -154,8 +154,9 @@ uint32_t CPckControlCenter::SearchByName(LPCWSTR lpszSearchString, void* _in_par
 
 uint32_t CPckControlCenter::ListByNode(LPCENTRY lpFileEntry, void* _in_param, SHOW_LIST_CALLBACK _showListCallback)
 {
-	if (NULL == lpFileEntry)
+	if (NULL == lpFileEntry) {
 		return 0;
+	}
 
 	SHOW_LIST_CALLBACK _showList = _showListCallback;
 
@@ -177,7 +178,6 @@ uint32_t CPckControlCenter::ListByNode(LPCENTRY lpFileEntry, void* _in_param, SH
 
 	//Enter a non-..folder
 	if (PCK_ENTRY_TYPE_DOTDOT != (PCK_ENTRY_TYPE_DOTDOT & entry_type)){
-
 		lpNodeToShow = ((LPPCK_PATH_NODE)lpFileEntry)->child;
 
 	}//What remains is the ..folder
@@ -187,11 +187,9 @@ uint32_t CPckControlCenter::ListByNode(LPCENTRY lpFileEntry, void* _in_param, SH
 
 	//Is lpNodeToShow NULL?
 	if (NULL == lpNodeToShow) {
-#if PCK_DEBUG_OUTPUT
-		printf("%s:lpNodeToShow is NULL\n", __FUNCTION__);
-#endif
 		return 0;
 	}
+
 
 	uint32_t dwSerialNumber = 0;
 
@@ -201,7 +199,6 @@ uint32_t CPckControlCenter::ListByNode(LPCENTRY lpFileEntry, void* _in_param, SH
 		//Show the folder first here
 		int entryType = lpNodeToShowPtr->entryType;
 		if ((PCK_ENTRY_TYPE_FOLDER == (PCK_ENTRY_TYPE_FOLDER & entryType))) {
-
 			if (NULL != lpNodeToShowPtr->child) {
 				_showList(_in_param,
 					dwSerialNumber,
@@ -222,8 +219,12 @@ uint32_t CPckControlCenter::ListByNode(LPCENTRY lpFileEntry, void* _in_param, SH
 			}
 
 			dwSerialNumber++;
+		} else {
 		}
 		lpNodeToShowPtr = lpNodeToShowPtr->next;
+		if (lpNodeToShowPtr) {
+		} else {
+		}
 	}
 
 	lpNodeToShowPtr = lpNodeToShow;

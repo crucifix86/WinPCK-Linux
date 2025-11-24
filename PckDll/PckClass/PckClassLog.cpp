@@ -12,6 +12,7 @@
 #pragma warning ( disable : 4996 )
 
 #include <stdio.h>
+#include <cstdarg>
 #include "PckClassLog.h"
 #include "CharsCodeConv.h"
 #include <assert.h>
@@ -28,7 +29,7 @@ CPckClassLog::CPckClassLog()
 CPckClassLog::~CPckClassLog()
 {
 #if PCK_DEBUG_OUTPUT
-	OutputDebugStringA(__FUNCTION__"\r\n");
+	OutputDebugStringA(__FUNCTION__, "\r\n");
 #endif
 }
 

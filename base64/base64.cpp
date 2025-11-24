@@ -1,6 +1,7 @@
 
 #include "base64.h"
 #include <string>
+#include <cstring>
 
 BEXTERN uint32_t BEXPORT decodeBound(const char* pdata,const uint32_t data_size)
 {
