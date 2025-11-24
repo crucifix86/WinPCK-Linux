@@ -2,6 +2,8 @@
 
 Perfect World Company game PCK file compressed package viewer and editor, now fully ported to Linux!
 
+![WinPCK Linux Screenshot](winpck.png)
+
 ## Features
 
 ### Supported Games
